@@ -68,6 +68,17 @@ export class PessoaslistComponent {
     this.modalService.open(modal, { size: 'sm' });
   }
 
+  deletar(pessoa: Pessoa) {
+    this.pessoaService.delete(pessoa).subscribe({
+      next: pessoa => { // QUANDO DÁ CERTO
+        this.listAll();
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+  }
   addOuEditarPessoa(pessoa: Pessoa) {
 
     this.listAll();
